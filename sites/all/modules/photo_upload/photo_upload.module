@@ -1,0 +1,34 @@
+<?php
+function photo_upload_menu() {
+	$items['photoupload'] = array(
+		'title' => 'Mobile photo upload',
+		'description' => 'Upload photo',
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('photoupload_upload_file'),
+		'type' => MENU_CALLBACK, 
+	);
+	return $items;
+}
+
+function photoupload_upload_file($form, $form_state) {
+	// prepare the file upload form
+	// set multipart/form-data encoding type
+	$form = array('#attributes' => array('enctype' => 'multipart/form-data'));
+	// image file selector
+	$form['image'] = array(
+		'#type' => 'file',
+		'#title' => 'Upload photo',
+		'#description' => t('Pick a image file to upload')
+	);
+
+	// page node identifier. The page to image be attached
+	$form['nid'] = array(
+		'#type' => 'textfield',
+		'#title' => 'Page nid',
+	);
+	//$form['#token'] = FALSE;
+ 
+	// submit button
+	$form['submit'] = array('#type' => 'submit', '#value' => 'Upload');
+	return $form;
+}

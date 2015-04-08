@@ -1,0 +1,5 @@
+name = Photo Upload
+description = Photo Upload
+package = Custom Module
+core = 7.x
+
